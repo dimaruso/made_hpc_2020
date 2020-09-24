@@ -1,12 +1,11 @@
 #include <iostream>
 #include "Matrix.h"
 
-Matrix::Matrix(size_t _rows, size_t _cols):
+Matrix::Matrix(size_t _rows, size_t _cols, const int& default_value):
 	rows(_rows),
-	cols(_cols)
+	cols(_cols),
+	data(std::vector<Row>(rows, Row(cols, default_value)))
 {
-	for (size_t i = 0; i < rows; ++i)
-		data.push_back(Row(cols));
 }
 
 Matrix::~Matrix()
@@ -17,6 +16,7 @@ const size_t Matrix::getRows() const
 {
 	return rows;
 }
+
 const size_t Matrix::getColumns() const
 {
 	return cols;
@@ -24,13 +24,16 @@ const size_t Matrix::getColumns() const
 
 const Matrix::Row& Matrix::operator[](size_t i) const
 {
-	if (i < rows && data.size() != 0) return data[i];
+	if (i < rows && !data.empty()) 
+		return data[i];
 	else
 		throw std::out_of_range("wrong row index");
 }
+
 Matrix::Row& Matrix::operator[](size_t i)
 {
-	if (i < rows && data.size() != 0) return data[i];
+	if (i < rows && !data.empty()) 
+		return data[i];
 	else
 		throw std::out_of_range("wrong row index");
 }
@@ -44,7 +47,7 @@ bool Matrix::operator==(const Matrix& other) const
 	for (size_t i = 0; i < rows; ++i)
 		for (size_t j = 0; j < cols; ++j)
 			if (data[i][j] != other[i][j])
-			return false;
+				return false;
 	return true;
 }
 
@@ -55,11 +58,13 @@ bool Matrix::operator!=(const Matrix& other) const
 
 Matrix& Matrix::operator=(const Matrix& m)
 {
-	if (this == &m) return *this;
+	if (this == &m) 
+		return *this;
 
 	if (!((this)->rows == m.getRows() && (this)->cols == m.getColumns()))
 	{
-		if(data.size() != 0) data.clear();
+		if(data.size() != 0) 
+			data.clear();
 		rows = m.getRows();
 		cols = m.getColumns();
 		for (int i = 0; i < rows; ++i)
@@ -82,8 +87,7 @@ Matrix Matrix::operator*(const int k) const
 	Matrix self = *this;
 	for (size_t i = 0; i < rows; ++i)
 		for (size_t j = 0; j < cols; ++j)
-
-		self[i][j] = data[i][j]*k;
+			self[i][j] = data[i][j]*k;
 	return self;
 }
 

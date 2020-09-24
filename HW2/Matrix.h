@@ -4,7 +4,7 @@
 class Matrix
 {
 public:
-	Matrix(size_t _rows, size_t _cols);
+	Matrix(size_t _rows, size_t _cols, const int& default_value = 0);
 	~Matrix();
 	class Row;
 	const size_t getRows() const;
@@ -18,8 +18,8 @@ public:
 
 	Matrix& operator=(const Matrix& m);
 
-	Matrix operator*(const int k) const;
     Matrix operator*(const Matrix& m) const;
+	Matrix operator*(const int k) const;
 	Matrix operator*=(const int k);
 
 private:
@@ -28,27 +28,27 @@ private:
 	std::vector<Row> data;
 };
 
-class Matrix::Row {
-
+class Matrix::Row 
+{
 public:
-	Row(size_t _cols)
+	Row(size_t _cols, const int& default_value = 0)
 	{
-		data.resize(_cols);
-		for (size_t i = 0; i < _cols; ++i)
-			data[i] = 0;
+		data.resize(_cols, default_value);
 	}
 	~Row()
 	{
 	}
 	const int& operator[](const int i) const
 	{
-		if (i < data.size()) return data[i];
+		if (i < data.size()) 
+			return data[i];
 		else
 			throw std::out_of_range("wrong column index");
 	}
 	int& operator[](const int i) 
 	{
-		if (i < data.size()) return data[i];
+		if (i < data.size()) 
+			return data[i];
 		else
 			throw std::out_of_range("wrong column index");
 	}
