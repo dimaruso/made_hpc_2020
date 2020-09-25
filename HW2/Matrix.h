@@ -31,21 +31,21 @@ private:
 class Matrix::Row 
 {
 public:
-	Row(size_t _cols, const int& default_value = 0)
+	Row(size_t _cols, const int& default_value = 0):
+		data(std::vector<int>(_cols, default_value))
 	{
-		data.resize(_cols, default_value);
 	}
 	~Row()
 	{
 	}
-	const int& operator[](const int i) const
+	const int& operator[](const size_t& i) const
 	{
 		if (i < data.size()) 
 			return data[i];
 		else
 			throw std::out_of_range("wrong column index");
 	}
-	int& operator[](const int i) 
+	int& operator[](const size_t& i) 
 	{
 		if (i < data.size()) 
 			return data[i];

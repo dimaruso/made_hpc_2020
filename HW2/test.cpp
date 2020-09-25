@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cassert>
+#include <random>
+#include <ctime>
 #include "Matrix.h"
 
 using std::cout;
@@ -96,10 +98,33 @@ void test_multiply()
 	return;
 }
 
-int main(int argc, char* argv[]) 
+void tests()
 {
 	test_init();
 	test_multiply();
 	cout << "Tests completed successfully!\n";
+	return;
+}
+
+Matrix gen_square_matrix(const size_t& size)
+{
+	Matrix m(size, size);
+	for (size_t i = 0; i < size; ++i)
+		for (size_t j = 0; j < size; ++j)
+			m[i][j] = rand() % 100 + 1;
+	return m;
+}
+
+int main(int argc, char* argv[]) 
+{
+	srand(unsigned(time(0)));
+	if (argc > 1)
+	{
+		auto res = gen_square_matrix(atoi(argv[1])) * gen_square_matrix(atoi(argv[1]));
+		cout << "Multiply completed successfully!\n";
+	}
+	else
+		tests();
 	return 0;
 }
+//g++ -o multiply test.cpp Matrix.cpp -g

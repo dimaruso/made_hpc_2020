@@ -1,16 +1,21 @@
 CC=g++
+CFLAFS=-c
+LDFLAGS=
+SOURSES=test.cpp Matrix.cpp
+OBJECTS=$(SOURSES:.cpp=.o)
+EXECUTABLE=tests
 
-all: test
+all: $(EXECUTABLE)
 
-test: test.o Matrix.o
-	$(CC) -o test test.o Matrix.o
-	./test
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	./$(EXECUTABLE)
 
-Matrix.o: Matrix.cpp Matrix.h
-	$(CC) -c Matrix.cpp
+test.o: test.cpp
+	$(CC) $(OPTIMIZATION) $(CFLAFS) $< -o $@
 
-test.o: test.cpp Matrix.h
-	$(CC) -c test.cpp
+.cpp.o:
+	$(CC) $(OPTIMIZATION) $(CFLAFS) $< -o $@
 
 clean:
-	rm -rf *.o test
+	rm -rf *.o $(EXECUTABLE)

@@ -104,11 +104,11 @@ Matrix Matrix::operator*(const Matrix& m) const
 	if (cols != m.getRows())
 		throw std::out_of_range("wrong matrixs sizes for multiply");
 
-    Matrix res(rows, m.getColumns());
+	Matrix res(rows, m.getColumns());
 
-    for(size_t i = 0; i < res.getRows(); ++i)
-        for(size_t j = 0; j < res.getColumns(); ++j)
-        	for(size_t k = 0; k < cols; ++k)
-	            res[i][j] += data[i][k] * m[k][j];
-    return res;
+	for(size_t i = 0; i < res.getRows(); ++i)
+		for(size_t j = 0; j < res.getColumns(); ++j)
+			for(size_t k = 0; k < cols; ++k)
+				res[i][j] += data[i][k] * m[k][j];
+	return res;
 }
