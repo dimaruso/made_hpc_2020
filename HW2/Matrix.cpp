@@ -67,7 +67,7 @@ Matrix& Matrix::operator=(const Matrix& m)
 			data.clear();
 		rows = m.getRows();
 		cols = m.getColumns();
-		for (int i = 0; i < rows; ++i)
+		for (size_t i = 0; i < rows; ++i)
 			data.push_back(Row(cols));
 	} 
 	else

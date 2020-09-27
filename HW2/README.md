@@ -25,29 +25,46 @@
     ./tests - Для проведения тестирования класса.  
 
 * Программа разделена на файл класса Matrix, заголовочный и тесты.  
+
     bash static_link.sh - Для выполнения статической линковки;  
     ./multiply_static - Для запуска собранной таким образом программы.  
 
-* Время выполнения для сборок multiply_g (флаг -g) и multyply_O3 (флаг -O3) на Winwows.  
-    Сборки получены командами:  
+* Время выполнения для сборок multiply_g (флаг -g) и multiply_O3 (флаг -O3) на Winwows 10.  
+
+    Сборки получены командами :  
     make EXECUTABLE=multiply_g LDFLAGS=-g  
-    make EXECUTABLE=multyply_O3 OPTIMIZATION=-O3  
+    make EXECUTABLE=multiply_O3 OPTIMIZATION=-O3  
+    и сохранены в директорию [src](HW2/src)  
 
     Время получено с помощью команды time (real):  
-    time ./multiply_g N  
+    time ./multiply_O3 N  
 
-    N | multiply_g | multyply_O3
+    Результаты замеров  
+
+    N | multiply_g | multiply_O3
     :---: | :---: | :---:
     **512** | 0m 10,935s | 0m 0,022s
     **1024** | 1m 28,931s | 0m 0,021s
     **2048** | 13m 32,517s |  0m 0,015s
     **4096** | inf |  0m 0,023s
 
-* Время выполнения сборки multyply_O3 (флаг -O3) в разных системах.  
+* Время выполнения сборки multiply_O3 (флаг -O3) в разных системах.  
 
-    N | Windows 10 | virtual box | Docker
+    Запуск докера:  
+
+    docker build --tag=dimarussio/mult .  
+    docker run -it dimarussio/mult  
+    g++ -std=c++11 -O3 -o multiply_O3 test.cpp Matrix.cpp  
+
+    Результаты замеров  
+
+    N | Native Windows 10 | virtual box Ubuntu:18.04 | Docker Ubuntu:18.04
     :---: | :---: | :---: | :---:
-    **512** | 0 | 0 | 0
-    **1024** | 0 | 0 | 0
-    **2048** | 0 | 0 | 0
-    **4096** | 0 | 0 | 0
+    **512** | 0m 0,022s | inf | 0m 0.499s
+    **1024** | 0m 0,021s | inf | 0m 5.672s
+    **2048** | 0m 0,015s | inf | 1m 16.009s
+    **4096** | 0m 0,023s | inf | 11m 48.611s
+
+* Базовые скрипты bash, перечисленные на лекции, реализованы и находятся в директории [/bash_scripts](HW2/bash_scripts)  
+
+* Результат работы теста LINPACK сохранен в файле [Linpack_result](HW2/Linpack_result.txt)  

@@ -1,5 +1,5 @@
 CC=g++
-CFLAFS=-c
+CFLAFS=-c -Wall
 LDFLAGS=
 SOURSES=test.cpp Matrix.cpp
 OBJECTS=$(SOURSES:.cpp=.o)
