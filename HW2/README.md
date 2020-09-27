@@ -65,6 +65,6 @@
     **2048** | 0m 0,015s | inf | 1m 16.009s
     **4096** | 0m 0,023s | inf | 11m 48.611s
 
-* Базовые скрипты bash, перечисленные на лекции, реализованы и находятся в директории [/bash_scripts](HW2/bash_scripts)  
+* Базовые скрипты bash, перечисленные на лекции, реализованы и находятся в директории [/bash_scripts](bash_scripts)  
 
-* Результат работы теста LINPACK сохранен в файле [Linpack_result](HW2/Linpack_result.txt)  
+* Результат работы теста LINPACK сохранен в файле [Linpack_result](Linpack_result.txt)  
