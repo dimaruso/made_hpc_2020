@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Matrix.h"
 
-Matrix::Matrix(size_t _rows, size_t _cols, const int& default_value):
+Matrix::Matrix(const size_t& _rows, const size_t& _cols, const int& default_value):
 	rows(_rows),
 	cols(_cols),
 	data(std::vector<Row>(rows, Row(cols, default_value)))
@@ -22,7 +22,7 @@ const size_t Matrix::getColumns() const
 	return cols;
 }
 
-const Matrix::Row& Matrix::operator[](size_t i) const
+const Matrix::Row& Matrix::operator[](const size_t& i) const
 {
 	if (i < rows && !data.empty()) 
 		return data[i];
@@ -30,7 +30,7 @@ const Matrix::Row& Matrix::operator[](size_t i) const
 		throw std::out_of_range("wrong row index");
 }
 
-Matrix::Row& Matrix::operator[](size_t i)
+Matrix::Row& Matrix::operator[](const size_t& i)
 {
 	if (i < rows && !data.empty()) 
 		return data[i];
@@ -82,7 +82,7 @@ Matrix& Matrix::operator=(const Matrix& m)
 	return *this;
 }
 
-Matrix Matrix::operator*(const int k) const
+Matrix Matrix::operator*(const int& k) const
 {
 	Matrix self = *this;
 	for (size_t i = 0; i < rows; ++i)
@@ -91,7 +91,7 @@ Matrix Matrix::operator*(const int k) const
 	return self;
 }
 
-Matrix Matrix::operator*=(const int k)
+Matrix Matrix::operator*=(const int& k)
 {
 	for (size_t i = 0; i < rows; ++i)
 		for (size_t j = 0; j < cols; ++j)

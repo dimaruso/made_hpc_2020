@@ -5,14 +5,14 @@
 class Matrix
 {
 public:
-	Matrix(size_t _rows, size_t _cols, const int& default_value = 0);
+	Matrix(const size_t& _rows, const size_t& _cols, const int& default_value = 0);
 	~Matrix();
 	class Row;
 	const size_t getRows() const;
 	const size_t getColumns() const;
 
-	const Row& operator[](size_t i) const;
-	Row& operator[](size_t i);
+	const Row& operator[](const size_t& i) const;
+	Row& operator[](const size_t& i);
 
 	bool operator==(const Matrix& other) const;
 	bool operator!=(const Matrix& other) const;
@@ -20,8 +20,8 @@ public:
 	Matrix& operator=(const Matrix& m);
 
 	Matrix operator*(const Matrix& m) const;
-	Matrix operator*(const int k) const;
-	Matrix operator*=(const int k);
+	Matrix operator*(const int& k) const;
+	Matrix operator*=(const int& k);
 
 private:
 	size_t rows;
