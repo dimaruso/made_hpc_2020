@@ -50,20 +50,28 @@
 
 * Время выполнения сборки multiply_O3 (флаг -O3) в разных системах.  
 
-    Запуск докера:  
+    *Запуск докера:*  
 
+    Создание docker image  
     docker build --tag=dimarussio/mult .  
-    docker run -it dimarussio/mult  
-    g++ -std=c++11 -O3 -o multiply_O3 test.cpp Matrix.cpp  
 
-    Результаты замеров  
+    Запуск контейнера с его удалением после использования  
+    docker run --rm dimarussio/mult N  
+
+    Запуск замеров времени  
+    time docker run --rm dimarussio/mult N  
+
+    Удаление docker image  
+    docker rmi dimarussio/mult  
+
+    *Результаты:*  
 
     N | Native Windows 10 | virtual box Ubuntu:18.04 | Docker Ubuntu:18.04
     :---: | :---: | :---: | :---:
-    **512** | 0m 0,022s | inf | 0m 0.499s
-    **1024** | 0m 0,021s | inf | 0m 5.672s
-    **2048** | 0m 0,015s | inf | 1m 16.009s
-    **4096** | 0m 0,023s | inf | 11m 48.611s
+    **512** | 0m 0,022s | inf | 0m 3,310s
+    **1024** | 0m 0,021s | inf | 0m 13,680s
+    **2048** | 0m 0,015s | inf | 1m 26,951s
+    **4096** | 0m 0,023s | inf |  11m 34,680s
 
 * Базовые скрипты bash, перечисленные на лекции, реализованы и находятся в директории [/bash_scripts](bash_scripts)  
 
