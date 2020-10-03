@@ -2,6 +2,7 @@
 #include <cassert>
 #include <random>
 #include <ctime>
+#include <sys/time.h>
 #include "Matrix.h"
 
 using std::cout;
@@ -120,11 +121,27 @@ int main(int argc, char* argv[])
 	srand(unsigned(time(0)));
 	if (argc > 1)
 	{
-		auto res = gen_square_matrix(atoi(argv[1])) * gen_square_matrix(atoi(argv[1]));
+		size_t k_exp = 2;
+		if (argc > 2)
+			k_exp = atoi(argv[2]);		
+	    struct timeval start, end;
+    	double r_time, average_runtime = 0.0;
+
+		for (size_t i = 0; i < k_exp; ++i)
+		{
+			auto m1 = gen_square_matrix(atoi(argv[1]));
+			auto m2 = gen_square_matrix(atoi(argv[1]));
+			gettimeofday(&start, NULL);
+			auto res = m1 * m2;
+			gettimeofday(&end, NULL);
+			r_time = end.tv_sec - start.tv_sec + ((double) (end.tv_usec - start.tv_usec)) / 1000000;
+	        average_runtime += r_time / k_exp;
+		    cout << "runtime " << r_time  << " seconds\n";
+		}
+	    cout << "average runtime " << average_runtime  << " seconds\n";
 		cout << "Multiply completed successfully!\n";
 	}
 	else
 		tests();
 	return 0;
 }
-//g++ -o multiply test.cpp Matrix.cpp -g

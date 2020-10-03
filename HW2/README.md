@@ -21,7 +21,7 @@
     make LDFLAGS=-g - Для сборки с дебагом;  
     make EXECUTABLE=new_name - Для сборки с новым именем new_name;  
     make clean - Для удаления исполнительного и всех объектных файлов;  
-    ./tests N - Для умножения двух сгенерированных матриц размера NxN;  
+    ./tests N k - Для умножения двух сгенерированных матриц размера NxN k раз (default k = 2);  
     ./tests - Для проведения тестирования класса.  
 
 * Программа разделена на файл класса Matrix, заголовочный и тесты.  
@@ -31,48 +31,49 @@
 
 * Время выполнения для сборок multiply_g (флаг -g) и multiply_O3 (флаг -O3) на Winwows 10.  
 
-    Сборки получены командами :  
+    *Сборки получены командами:*  
     make EXECUTABLE=multiply_g LDFLAGS=-g  
     make EXECUTABLE=multiply_O3 OPTIMIZATION=-O3  
-    и сохранены в директорию [src](HW2/src)  
+    *и сохранены в директорию [/src](src)*  
 
-    Время получено с помощью команды time (real):  
-    time ./multiply_O3 N  
+    *Для выполнения замера времени выполнить следующие команды для каждого N:*  
+    ./multiply_g N 4  
+    ./multiply_O3 N 4  
 
-    Результаты замеров  
+    *Результаты:*  
 
     N | multiply_g | multiply_O3
     :---: | :---: | :---:
-    **512** | 0m 10,935s | 0m 0,022s
-    **1024** | 1m 28,931s | 0m 0,021s
-    **2048** | 13m 32,517s |  0m 0,015s
-    **4096** | inf |  0m 0,023s
+    **512** | 12.6585 s | 0.534278 s
+    **1024** | 139.439 s | 8.19903 s
+    **2048** | 914.828 s | 85.172 s
+    **4096** | inf |  1841.99 s
 
 * Время выполнения сборки multiply_O3 (флаг -O3) в разных системах.  
 
     *Запуск докера:*  
+    1. Выполнение всех тестов сразу:  
+        bash run_docker.sh  
 
-    Создание docker image  
-    docker build --tag=dimarussio/mult .  
+    2. Последовательное выполение:  
+        Создание docker image  
+        docker build --tag=dimarussio/mult .  
 
-    Запуск контейнера с его удалением после использования  
-    docker run --rm dimarussio/mult N  
+        Запуск контейнера с его удалением после использования  
+        docker run --rm dimarussio/mult N k  
 
-    Запуск замеров времени  
-    time docker run --rm dimarussio/mult N  
-
-    Удаление docker image  
-    docker rmi dimarussio/mult  
+        Удаление docker image  
+        docker rmi dimarussio/mult  
 
     *Результаты:*  
 
     N | Native Windows 10 | virtual box Ubuntu:18.04 | Docker Ubuntu:18.04
     :---: | :---: | :---: | :---:
-    **512** | 0m 0,022s | inf | 0m 3,310s
-    **1024** | 0m 0,021s | inf | 0m 13,680s
-    **2048** | 0m 0,015s | inf | 1m 26,951s
-    **4096** | 0m 0,023s | inf |  11m 34,680s
+    **512** | 0.534278 s | inf | 0.332699 s
+    **1024** | 8.19903 s | inf | 3.86882 s
+    **2048** | 85.172 s | inf | 80.2025 s
+    **4096** | 1841.99 s | inf | 759.865 s
 
 * Базовые скрипты bash, перечисленные на лекции, реализованы и находятся в директории [/bash_scripts](bash_scripts)  
 
-* Результат работы теста LINPACK сохранен в файле [Linpack_result](Linpack_result.txt)  
+* Результат работы теста LINPACK сохранен в файле [Linpack_result](src/Linpack_result.txt)  
