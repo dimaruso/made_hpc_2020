@@ -17,10 +17,7 @@ void seedThreads(const size_t nThreads, unsigned int* seeds) {
 
 int main(int argc, char* argv[])
 {
-    size_t nThreads = 4;
-
-    if (argc > 2)
-        nThreads = atoi(argv[2]);
+    const size_t nThreads = (argc > 2) ? atoi(argv[2]) : 4;
 
     srand(time(NULL));
     unsigned int seeds[nThreads];
@@ -30,11 +27,9 @@ int main(int argc, char* argv[])
     double x, y, Pi; 
     size_t a = 1;
     size_t in_circ = 0;
-    size_t N = 500000;
+    const size_t N = (argc > 1) ? atoi(argv[1]) : 500000;
     size_t tid, seed;
 
-    if (argc > 1)
-        N = atoi(argv[1]);
     if (argc > 3)
     {
         for (size_t i = 0; i < nThreads; i++)
