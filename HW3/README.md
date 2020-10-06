@@ -65,7 +65,7 @@
     n_threads - число тредов (default = 4),  
     need_print_x_y - флаг для вывода seeds и всех значений X, Y (default = False).  
 
-4. Реализована [линейная регрессия](LeastSquares.c), обучение которой распараллелено.  
+4. Реализована [линейная регрессия](bonus/LeastSquares.c), обучение которой распараллелено.  
     Сборка:  
     g++ LeastSquares.c -o run -fopenmp  
 
