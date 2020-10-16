@@ -2,7 +2,7 @@
 
 ## Pagerank, matrices and graphs
 
-1. Generate random graphs and test &A^m& counter of number of paths. Evaluate it within log2(m) matmul-s.  
+1. Generate random graphs and test A^m counter of number of paths. Evaluate it within log2(m) matmul-s.  
 2. Generate small random or select some graph and implement pagerank procedure. Compare with naive ranking.  
 • Tip: Moscow subway graph is a nice example (but rather tiny).  
 3. Try all tricks for evaluation of performance: optimization,
@@ -11,7 +11,7 @@ blas, openmp, loops placing.
 
 ## Решение
 
-1. Реализована [программа](matpow.c) выполняющая распараллеленную генерацию и возведение матриц в степень.  
+1. Реализована [программа](matpow.c) выполняющая распараллеленную генерацию и возведение матриц в степень. Матрицу можно интерпритировать в качестве матрицы смежности происвольного ориентированного графа.  
     Сборка:  
     `g++ -O3 matpow.c -o run -fopenmp`  
 

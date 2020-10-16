@@ -128,8 +128,7 @@ int main(int argc, char* argv[])
         {    
             for (size_t j = 0; j < N; ++j)
             { 
-                M[i * N + j] = (double) rand() / RAND_MAX;
-                M[i * N + j] += rand() % MAX_VALUE;
+                M[i * N + j] = rand() % MAX_VALUE;
             }
         }
     }
