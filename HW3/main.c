@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
     if (argc > 3)
     {
         for (size_t i = 0; i < nThreads; i++)
-            printf("seed_%d = %d ", i, seeds[i]);
+            printf("seed_%ld = %ld ", i, seeds[i]);
         printf("\n");
     }
 
@@ -53,13 +53,13 @@ int main(int argc, char* argv[])
             y += rand() % a;
 
             if (argc > 3)
-                printf("\n tid = %d: x = %f, y = %f", tid, x, y); 
+                printf("\n tid = %ld: x = %f, y = %f", tid, x, y); 
 
             if (x * x + y * y <= a * a)
                 in_circ += 1; 
         }
     }
     Pi = ((double) in_circ / N) * 4;
-    printf("\n\nin_circ = %d, N = %d, Pi = %f", in_circ, N, Pi); 
+    printf("\n\nin_circ = %ld, N = %ld, Pi = %f", in_circ, N, Pi); 
     return 0;
 }

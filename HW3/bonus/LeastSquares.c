@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
     if (argc > 3)
     {
         for (size_t i = 0; i < nThreads; ++i)
-            printf("seed_%d = %d ", i, seeds[i]);
+            printf("seed_%ld = %ld ", i, seeds[i]);
         printf("\n");
     }
 
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
             y[i] = X[i] * a + b + noise;
 
             if (argc > 3)
-                printf("\n tid = %d: x = %f, y = %f", tid, X[i], y[i]); 
+                printf("\n tid = %ld: x = %f, y = %f", tid, X[i], y[i]); 
         }
 // Minimize Sum( (y[i] - f(X[i], a, b))^2 ) -> min(a,b)
 #pragma omp for
@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
             
             // logger
             if ((N < 20 && i % N == 0) || (N >= 20 && i % (N / 20) == 0))
-                printf("\ni = %d: y_pred = %f, y = %f, a = %f, b = %f", i, y_pred, y[i], a_lr, b_lr); 
+                printf("\ni = %ld: y_pred = %f, y = %f, a = %f, b = %f", i, y_pred, y[i], a_lr, b_lr); 
         }
     }
     printf("\n\ntrue f(x) = %f * x + %f", a, b); 
