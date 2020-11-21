@@ -9,3 +9,4 @@
 3. [Pthreads, OpemMP](HW3)  
 4. [HPC server and to Linux-based cluster. Pagerank algorithm](HW4)
 5. [MPI](HW5)
+6. [CUDA. Median filter](HW6)
